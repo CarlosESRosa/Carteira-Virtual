@@ -50,4 +50,26 @@ export default class Controller {
       return res.status(status).json({ message });
     }
   }
+
+  async getTransactions(req: Request, res: Response) {
+    try {
+      const transactions = await this.service.getTransactions(req.body.user.data.username);
+
+      return res.status(200).json(transactions);
+    } catch (error) {
+      const { status, message } = error as ThrowError;
+      return res.status(status).json({ message });
+    }
+  }
+
+  async getFiltredTransactions(req: Request, res: Response) {
+    try {
+      const transactions = await this.service.getFiltredTransactions(req.body.user.data.username);
+
+      return res.status(200).json(transactions);
+    } catch (error) {
+      const { status, message } = error as ThrowError;
+      return res.status(status).json({ message });
+    }
+  }
 }
