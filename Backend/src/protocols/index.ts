@@ -26,9 +26,9 @@ export interface UserAndAccount {
 export interface IService {
 	createUser(data: { username: string, password: string }): Promise<User>;
 	createAccount(balance: number): Promise<Account>;
-	GetUserByUsername(username: string): Promise<User | null>;
-	GetAllUsers(): Promise<any>;
+	GetUserByUsername(username: string): Promise<UserAndAccount>;
 	login(data: UserPayload): Promise<string>;
 	GetBalance(username: string): Promise<UserAndAccount>;
+	createTransaction(debited: string, data: {value: number, username: string}): Promise<string>;
 }
 

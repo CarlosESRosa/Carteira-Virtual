@@ -10,6 +10,7 @@ module.exports = {
         debitedAccountId: {
           type: Sequelize.INTEGER,
           allowNull: false,
+          field: 'debited_account_id',
           onUpdate: 'CASCADE',
           onDelete: 'CASCADE',
           references: {
@@ -20,6 +21,7 @@ module.exports = {
         creditedAccountId: {
           type: Sequelize.INTEGER,
           allowNull: false,
+          field: 'credited_account_id',
           onUpdate: 'CASCADE',
           onDelete: 'CASCADE',
           references: {
@@ -33,7 +35,8 @@ module.exports = {
         },
         createdAt: {
           allowNull: false,
-          type: Sequelize.FLOAT,
+          type: Sequelize.DATE,
+          field: 'created_at',
         },
       });
     },

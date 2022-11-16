@@ -1,6 +1,7 @@
 import * as bcrypt from 'bcryptjs';
 import ThrowError from '../utils/throwError';
 import userModel from '../database/models/UsersModel';
+import transactionModel from '../database/models/TransactionsModel';
 import accountModel from '../database/models/AccountsModel';
 import { IService, User, UserPayload, Account, UserAndAccount } from '../protocols';
 import generateJWT from '../utils/generateJWT';
@@ -12,24 +13,9 @@ export default class Service implements IService {
 	badRequest = new ThrowError(400, 'Username need to have at least 3 caracteres and password 8 caracteres, a number and a capital letter');
 	notPossibleToCreate = new ThrowError(401, 'User already exists');
 	incorectValues = new ThrowError(400, 'Incorrect Username or Password');
+	notFound = new ThrowError(404, 'Username not found');
+	invalidTransation = new ThrowError(400, 'Invalid transation, check if you have balance enought and if the username receivers is correct');
 	
-	GetAllUsers = async () => {
-		const users = await userModel.findAll({
-			include: { model: accountModel, as: 'accounts' },
-		});
-		
-		return users;
-	};
-	
-
-	GetUserByUsername = async (username: string): Promise<User | null> => {
-		const user = await userModel.findOne(
-			{ where: { username: username } },
-		);
-		
-		return user as User | null;
-	};
-
 	createAccount = async (balance: number): Promise<Account> => {
 		const createdAccount = await accountModel.create(
 			{ balance },
@@ -38,13 +24,23 @@ export default class Service implements IService {
 		return createdAccount as unknown as Account;
 	};
 
+	GetUserByUsername = async (username: string): Promise<UserAndAccount> => {
+		const user = await userModel.findOne({
+			where: {username: username},
+			include: { model: accountModel, as: 'accounts' },
+		})
+		if(!user) throw this.notFound;
+		
+		return user as unknown as UserAndAccount;
+	};
+	
 	createUser = async (data: UserPayload): Promise<User> => {
 		const { username, password } = data;
 		
 		if(!username) throw this.invalidFields;
 		if(!password) throw this.invalidFields;
 		
-		const userExist = await this.GetUserByUsername(username);
+		const userExist = await userModel.findOne({where: {username: username}});
 		
 		// Payload validations
 		if(userExist) throw this.notPossibleToCreate;
@@ -94,5 +90,41 @@ export default class Service implements IService {
 		});
 		
 		return account as unknown as UserAndAccount;
+	};
+
+	createTransaction = async (debited: string, data: {value: number, username: string}): Promise<string> => {
+		// payload validations
+		if(!data.value) throw this.invalidFields;
+		if(!data.username) throw this.invalidFields;
+
+		const debitedUser = await this.GetUserByUsername(debited);
+		const creditedUser = await this.GetUserByUsername(data.username);
+		// console.log(debitedUser.username, debitedUser.accounts.id, debitedUser.accounts.balance);
+		// console.log(creditedUser.username, creditedUser.accounts.id, creditedUser.accounts.balance);
+		
+		// transaction validations
+		if(debitedUser.accounts.balance < data.value) throw this.invalidTransation;
+		if(debitedUser.accounts.id === creditedUser.accounts.id) throw this.invalidTransation;
+
+		await accountModel.update(
+			{balance: debitedUser.accounts.balance - data.value},
+			{where: {id: debitedUser.accounts.id}}
+		)
+
+		await accountModel.update(
+			{balance: creditedUser.accounts.balance + data.value},
+			{where: {id: creditedUser.accounts.id}}
+		)
+		
+		await transactionModel.create(
+			{ 
+				debitedAccountId: debitedUser.accounts.id,
+				creditedAccountId: creditedUser.accounts.id,
+				value: data.value,
+				createdAt: Date.now()
+			},
+		);
+			
+		return `successful Transaction of ${data.value} from ${debitedUser.username} to ${creditedUser.username}`;
 	};
 }

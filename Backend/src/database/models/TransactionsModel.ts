@@ -1,5 +1,6 @@
-import { INTEGER, Model, NUMBER } from 'sequelize';
+import { DATE, INTEGER, Model, NUMBER } from 'sequelize';
 import db from '.';
+import AccountModel from './AccountsModel'
 
 class Transaction extends Model {
   id!: number;
@@ -19,6 +20,7 @@ Transaction.init({
   debitedAccountId: {
     type: INTEGER,
     allowNull: false,
+    field: 'debited_account_id',
     references: {
       model: 'accounts',
       key: 'id',
@@ -27,6 +29,7 @@ Transaction.init({
   creditedAccountId: {
     type: INTEGER,
     allowNull: false,
+    field: 'credited_account_id',
     references: {
       model: 'accounts',
       key: 'id',
@@ -37,8 +40,9 @@ Transaction.init({
     allowNull: false,
   },
   createdAt: {
-    type: NUMBER,
+    type: DATE,
     allowNull: false,
+    field: 'created_at',
   },
 }, {
   // ... Outras configs
@@ -48,5 +52,10 @@ Transaction.init({
   timestamps: false,
 });
 
+Transaction.belongsTo(AccountModel, { foreignKey: 'debitedAccountId', as: 'debitedAccount' });
+Transaction.belongsTo(AccountModel, { foreignKey: 'creditedAccountId', as: 'creditedAccount' });
+
+AccountModel.hasMany(Transaction, { foreignKey: 'debitedAccountId', as: 'debitedTransactions' });
+AccountModel.hasMany(Transaction, { foreignKey: 'creditedAccountId', as: 'creditedransactions' });
 
 export default Transaction;

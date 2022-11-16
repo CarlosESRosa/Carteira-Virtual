@@ -18,7 +18,7 @@ class App {
 
     this.config();
 
-    this.app.get('/', (req, res) => res.json({ ok: 'Hello Backend 2' }));
+    this.app.get('/', (req, res) => res.json({ ok: 'Backend working' }));
     this.routes();
   }
 
@@ -26,8 +26,7 @@ class App {
     this.app.post('/register', (req, res) => userFactory().createUser(req, res));
     this.app.post('/login', (req, res) => userFactory().login(req, res));
     this.app.get('/balance', authToken, (req, res) => userFactory().GetBalance(req, res));
-    this.app.get('/users', (req, res) => userFactory().GetAllUsers(req, res));
-    // this.app.post('/account', (req, res) => userFactory().createAccount(req, res));
+    this.app.post('/transactions', authToken, (req, res) => userFactory().createTransaction(req, res));
   }
 
   private config():void {

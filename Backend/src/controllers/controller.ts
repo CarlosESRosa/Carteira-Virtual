@@ -33,36 +33,21 @@ export default class Controller {
     try {
       const balance = await this.service.GetBalance(req.body.user.data.username);
             
-      return res.status(200).json(balance.accounts.balance);
+      return res.status(200).json({balance: balance.accounts.balance});
     } catch (error) {
       const { status, message } = error as ThrowError;
       return res.status(status).json({ message });
     }
   }
-  
-  async GetAllUsers(req: Request, res: Response) {
+
+  async createTransaction(req: Request, res: Response) {
     try {
-      const users = await this.service.GetAllUsers();
+      const transaction = await this.service.createTransaction(req.body.user.data.username, req.body);
 
-      return res.status(200).json(users);
+      return res.status(200).json(transaction);
     } catch (error) {
       const { status, message } = error as ThrowError;
       return res.status(status).json({ message });
     }
   }
-  
-
-  /* 
-  async createAccount(req: Request, res: Response) {
-    try {
-      const createdAccount = await this.service.createAccount(req.body.balance);
-
-      return res.status(201).json(createdAccount);
-    } catch (error) {
-      const { status, message } = error as ThrowError;
-      return res.status(status).json({ message });
-    }
-  }
-  */
-
 }
