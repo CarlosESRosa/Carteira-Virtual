@@ -5,17 +5,17 @@ module.exports = {
         [
           {
             username: 'Carlos',
-            password: 'Carlospass',
+            password: '$2a$10$T.qzOliIcxZzHblBEKe7UOA/7dtMP7ProbJb7kLeUS1wArjl4d.v6', // Carlospass1
             accountId: 1,
           },
           {
             username: 'Rosa',
-            password: 'Rosapass',
+            password: '$2a$10$YNYTLsc0JZ.b5JFEiisXJeawVbIb0NCjfZRTqMkRu3byoit.OB29S', // Rosapass1
             accountId: 2,
           },
           {
             username: 'Boca09',
-            password: 'Boca09pass',
+            password: '$2a$10$CXmFG8SiHUZJ3EsmRo6Zje1VKmYW5rrLNnS7K3VxnVmWKTgmpxiD6', // Boca09pass1
             accountId: 3,
           }
         ],

@@ -1,4 +1,13 @@
 import * as express from 'express';
+import Service from './servers/servers';
+import Controller from './controllers/controller';
+
+const userFactory = () => {
+  const service = new Service();
+  const controller = new Controller(service);
+
+  return controller;
+};
 
 class App {
   public app: express.Express;
@@ -8,8 +17,13 @@ class App {
 
     this.config();
 
-    // Não remover essa rota
-    this.app.get('/', (req, res) => res.json({ ok: 'teteettetet' }));
+    this.app.get('/', (req, res) => res.json({ ok: 'Hello Backend 2' }));
+    this.routes();
+  }
+
+  routes() {
+    this.app.post('/register', (req, res) => userFactory().createUser(req, res));
+    // this.app.post('/account', (req, res) => userFactory().createAccount(req, res));
   }
 
   private config():void {

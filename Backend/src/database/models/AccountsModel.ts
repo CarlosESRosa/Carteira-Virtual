@@ -1,7 +1,5 @@
 import { INTEGER, Model, NUMBER } from 'sequelize';
 import db from '.';
-import UserModel from './UsersModel'
-import TransactionModel from './TransactionsModel'
 
 class Account extends Model {
   id!: number;
@@ -28,8 +26,6 @@ Account.init({
   timestamps: false,
 });
 
-Account.belongsTo(UserModel, {foreignKey: 'accountId'})
-Account.belongsTo(TransactionModel, {foreignKey: 'debitedAccountId'})
-Account.belongsTo(TransactionModel, {foreignKey: 'creditedAccountId'})
-
+// Account.belongsTo(TransactionModel, {foreignKey: 'debitedAccountId'})
+// Account.belongsTo(TransactionModel, {foreignKey: 'creditedAccountId'})
 export default Account;

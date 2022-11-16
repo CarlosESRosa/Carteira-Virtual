@@ -1,12 +1,11 @@
 import { STRING, INTEGER, Model } from 'sequelize';
 import db from '.';
-import AccountModel from './AccountsModel'
+// import AccountModel from './AccountsModel'
 
 class User extends Model {
   id!: number;
   username: string;
   password: string;
-  accountId: number;
 }
 
 User.init({
@@ -26,13 +25,11 @@ User.init({
     allowNull: false,
     field: 'password',
   },
-  /* 
   accountId: {
     type: INTEGER,
     allowNull: false,
     field: 'accountId',
-  },
-  */
+  }
 }, {
   // ... Outras configs
   underscored: true,
@@ -41,6 +38,6 @@ User.init({
   timestamps: false,
 });
 
-User.hasOne(AccountModel, {foreignKey: 'id', as: 'accountId'})
+// User.belongsTo(AccountModel, {foreignKey: 'accountId'})
 
 export default User;

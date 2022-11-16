@@ -1,6 +1,5 @@
-import { DATE, INTEGER, Model, NUMBER } from 'sequelize';
+import { INTEGER, Model, NUMBER } from 'sequelize';
 import db from '.';
-import AccountModel from './AccountsModel'
 
 
 class Transaction extends Model {
@@ -48,7 +47,7 @@ Transaction.init({
   timestamps: false,
 });
 
-Transaction.hasOne(AccountModel, {foreignKey: 'id', as: 'debitedAccountId'});
-Transaction.hasOne(AccountModel, {foreignKey: 'id', as: 'creditedAccountId'});
+// Transaction.hasOne(AccountModel, {foreignKey: 'id', as: 'debitedAccountId'});
+// Transaction.hasOne(AccountModel, {foreignKey: 'id', as: 'creditedAccountId'});
 
 export default Transaction;
