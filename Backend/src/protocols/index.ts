@@ -19,5 +19,6 @@ export interface IService {
     createAccount(balance: number): Promise<Account>;
     GetUserByUsername(username: string): Promise<User | null>;
     GetAllUsers(): Promise<any>;
+    login(data: UserPayload): Promise<string>;
 }
 

@@ -1,16 +1,17 @@
 import * as bcrypt from 'bcryptjs';
-
 import ThrowError from '../utils/throwError';
 import userModel from '../database/models/UsersModel';
 import accountModel from '../database/models/AccountsModel';
 import { IService, User, UserPayload, Account } from '../protocols';
+import generateJWT from '../utils/generateJWT';
+
 
 
 export default class Service implements IService {
     invalidFields = new ThrowError(400, 'All fields must be filled');
     badRequest = new ThrowError(400, 'Username need to have at least 3 caracteres and password 8 caracteres, a number and a capital letter');
     notPossibleToCreate = new ThrowError(401, 'User already exists');
-
+    incorectValues = new ThrowError(400, 'Incorrect Username or Password');
     
     GetAllUsers = async () => {
         const users = await userModel.findAll({
@@ -63,4 +64,26 @@ export default class Service implements IService {
         
         return createdUser as User;
     };
+
+    login = async (data: UserPayload): Promise<string> => {
+        const { username, password } = data;
+        
+        const userFromDb = await userModel.findOne(
+          { where: { username: username } },
+        );
+    
+        // Payload validations
+        if (!username) throw this.invalidFields;
+        if (!password) throw this.invalidFields;
+        if (!userFromDb) throw this.incorectValues;
+    
+        const compareHash = bcrypt.compareSync(password, userFromDb.password);
+        if (!compareHash) throw this.incorectValues;
+    
+        const token = generateJWT(
+          { username: userFromDb.username},
+        );
+    
+        return token;
+      };
 }

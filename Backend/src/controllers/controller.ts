@@ -6,7 +6,28 @@ export default class Controller {
   constructor(private service: IService) {
     this.service = service;
   }
+  
+  async createUser(req: Request, res: Response) {
+    try {
+      const createdUser = await this.service.createUser(req.body);
 
+      return res.status(201).json(createdUser);
+    } catch (error) {
+      const { status, message } = error as ThrowError;
+      return res.status(status).json({ message });
+    }
+  }
+
+  async login(req: Request, res: Response) {
+    try {
+      const token = await this.service.login(req.body);
+
+      return res.status(200).json({ token });
+    } catch (error) {
+      const { status, message } = error as ThrowError;
+      return res.status(status).json({ message });
+    }
+  }
   
   async GetAllUsers(req: Request, res: Response) {
     try {
@@ -19,16 +40,6 @@ export default class Controller {
     }
   }
   
-  async createUser(req: Request, res: Response) {
-    try {
-      const createdUser = await this.service.createUser(req.body);
-
-      return res.status(201).json(createdUser);
-    } catch (error) {
-      const { status, message } = error as ThrowError;
-      return res.status(status).json({ message });
-    }
-  }
 
   /* 
   async createAccount(req: Request, res: Response) {
