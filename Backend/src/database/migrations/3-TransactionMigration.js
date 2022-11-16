@@ -8,28 +8,33 @@ module.exports = {
           type: Sequelize.INTEGER,
         },
         debitedAccountId: {
-            field: 'debitedAccountId',
-            foreignKey: true,
-            allowNull: false,
-            type: Sequelize.INTEGER,
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+          references: {
+            model: 'accounts',
+            key: 'id',
+          },
         },
         creditedAccountId: {
-            field: 'creditedAccountId',
-            foreignKey: true,
-            allowNull: false,
-            type: Sequelize.INTEGER,
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+          references: {
+            model: 'accounts',
+            key: 'id',
+          },
         },
         value: {
-            field: 'value',
-            allowNull: false,
-            type: Sequelize.FLOAT,
+          allowNull: false,
+          type: Sequelize.FLOAT,
         },
         createdAt: {
-            field: 'createdAt',
-            allowNull: false,
-            type: Sequelize.FLOAT,
+          allowNull: false,
+          type: Sequelize.FLOAT,
         },
-        
       });
     },
     down: async (queryInterface) => {
