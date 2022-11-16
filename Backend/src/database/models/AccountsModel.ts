@@ -1,5 +1,6 @@
-import { INTEGER, Model, NUMBER } from 'sequelize';
+import { INTEGER, Model, FLOAT } from 'sequelize';
 import db from '.';
+import UserModel from './UsersModel'
 
 class Account extends Model {
   id!: number;
@@ -14,9 +15,8 @@ Account.init({
     autoIncrement: true,
   },
   balance: {
-    type: NUMBER,
+    type: FLOAT,
     allowNull: false,
-    field: 'balance',
   }
 }, {
   // ... Outras configs
@@ -26,6 +26,7 @@ Account.init({
   timestamps: false,
 });
 
-// Account.belongsTo(TransactionModel, {foreignKey: 'debitedAccountId'})
-// Account.belongsTo(TransactionModel, {foreignKey: 'creditedAccountId'})
+Account.hasOne(UserModel, {foreignKey: 'accountId', as: 'users'});
+UserModel.belongsTo(Account, {foreignKey: 'accountId', as: 'accounts'});
+
 export default Account;

@@ -23,6 +23,7 @@ class App {
 
   routes() {
     this.app.post('/register', (req, res) => userFactory().createUser(req, res));
+    this.app.get('/users', (req, res) => userFactory().GetAllUsers(req, res));
     // this.app.post('/account', (req, res) => userFactory().createAccount(req, res));
   }
 

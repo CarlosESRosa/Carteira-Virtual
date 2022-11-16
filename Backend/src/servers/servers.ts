@@ -11,6 +11,16 @@ export default class Service implements IService {
     badRequest = new ThrowError(400, 'Username need to have at least 3 caracteres and password 8 caracteres, a number and a capital letter');
     notPossibleToCreate = new ThrowError(401, 'User already exists');
 
+    
+    GetAllUsers = async () => {
+        const users = await userModel.findAll({
+            include: { model: accountModel, as: 'accounts' },
+        });
+        
+        return users;
+    };
+    
+
     GetUserByUsername = async (username: string): Promise<User | null> => {
         const user = await userModel.findOne(
             { where: { username: username } },

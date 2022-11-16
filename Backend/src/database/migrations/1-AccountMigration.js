@@ -8,7 +8,6 @@ module.exports = {
           type: Sequelize.INTEGER,
         },
         balance: {
-          field: 'balance',
           allowNull: false,
           type: Sequelize.FLOAT,
         }

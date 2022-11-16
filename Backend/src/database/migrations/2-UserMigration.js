@@ -8,20 +8,23 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       username: {
-        field: 'username',
         allowNull: false,
         type: Sequelize.STRING,
       },
       password: {
-        field: 'password',
         allowNull: false,
         type: Sequelize.STRING,
       },
       accountId: {
-        field: 'accountId',
-        foreignKey: true,
-        allowNull: false,
         type: Sequelize.INTEGER,
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'account_id',
+        references: {
+          model: 'accounts',
+          key: 'id',
+        },
       }
     });
   },
