@@ -28,12 +28,23 @@ export default class Controller {
       return res.status(status).json({ message });
     }
   }
+
+  async GetBalance(req: Request, res: Response) {
+    try {
+      const balance = await this.service.GetBalance(req.body.user.data.username);
+            
+      return res.status(200).json(balance.accounts.balance);
+    } catch (error) {
+      const { status, message } = error as ThrowError;
+      return res.status(status).json({ message });
+    }
+  }
   
   async GetAllUsers(req: Request, res: Response) {
     try {
       const users = await this.service.GetAllUsers();
 
-      return res.status(201).json(users);
+      return res.status(200).json(users);
     } catch (error) {
       const { status, message } = error as ThrowError;
       return res.status(status).json({ message });

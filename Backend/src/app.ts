@@ -1,6 +1,7 @@
 import * as express from 'express';
 import Service from './servers/servers';
 import Controller from './controllers/controller';
+import authToken from './middlewares/authToken';
 
 const userFactory = () => {
   const service = new Service();
@@ -24,6 +25,7 @@ class App {
   routes() {
     this.app.post('/register', (req, res) => userFactory().createUser(req, res));
     this.app.post('/login', (req, res) => userFactory().login(req, res));
+    this.app.get('/balance', authToken, (req, res) => userFactory().GetBalance(req, res));
     this.app.get('/users', (req, res) => userFactory().GetAllUsers(req, res));
     // this.app.post('/account', (req, res) => userFactory().createAccount(req, res));
   }
