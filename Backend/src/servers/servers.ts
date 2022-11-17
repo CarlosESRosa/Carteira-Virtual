@@ -123,7 +123,7 @@ export default class Service implements IService {
 				debitedAccountId: debitedUser.accounts.id,
 				creditedAccountId: creditedUser.accounts.id,
 				value: data.value,
-				createdAt: Date.now()
+				createdAt: new Date()
 			},
 		);
 			

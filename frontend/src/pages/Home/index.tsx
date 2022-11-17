@@ -3,6 +3,7 @@ import Loading from '../Loading';
 import { useNavigate } from 'react-router-dom';
 import { requestGetTransactions, requestTransference } from '../../utils/FetchAPI';
 import axios from 'axios';
+import formatDate from '../../utils/formatDate';
 
 const Home: React.FC = () => {
 	const [userData, setUserData] = useState<any>({username: '', balance: 0, transactions: []});
@@ -77,18 +78,17 @@ const Home: React.FC = () => {
 
 	async function handleClickFilter() {
 		if(filterBy === 'Data'){
-				const test = copyUserData.transactions.sort((a:any, b: any) => {
-					// console.log(Number(a.createdAt), '/////', Number(b.createdAt));
-					if(Number(a.createdAt) > Number(b.createdAt)) return -1;
-					if(Number(a.createdAt) < Number(b.createdAt)) return 1;
-					return 0;
-				})
-				const aux = {
-					username: userData.username,
-					balance: userData.balance,
-					transactions: test
-				}
-				setCopyUserData(aux)
+			const test = copyUserData.transactions.sort((a:any, b: any) => {
+				if(Number(formatDate(a.createdAt)) > Number(formatDate(b.createdAt))) return -1;
+				if(Number(formatDate(a.createdAt)) < Number(formatDate(b.createdAt))) return 1;
+				return 0;
+			})
+			const aux = {
+				username: userData.username,
+				balance: userData.balance,
+				transactions: test
+			}
+			setCopyUserData(aux)
 		}
 		if(filterBy === 'Valor') {
 			const test = copyUserData.transactions.sort((a:any, b: any) => {
