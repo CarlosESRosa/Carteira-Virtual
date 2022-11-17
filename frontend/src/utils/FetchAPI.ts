@@ -95,3 +95,30 @@ export const requestBalance = async (token: string) => {
     }
   }
 }
+
+export const requestTransference = async (value: number, username: string, token: string) => {
+	try {
+    const { data } = await axios.post<string>(
+      'http://localhost:3001/transaction',
+      { value: value, username: username },
+      {
+        headers: {
+          'Authorization': token,
+        },
+      },
+    );
+
+    console.log(JSON.stringify(data, null, 4));
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log('error message: ', error.message);
+      // 👇️ error: AxiosError<any, any>
+      return error.message;
+    } else {
+      console.log('unexpected error: ', error);
+      return 'An unexpected error occurred';
+    }
+  }
+}
