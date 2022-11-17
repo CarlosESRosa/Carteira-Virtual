@@ -22,7 +22,7 @@ export default class Controller {
     try {
       const token = await this.service.login(req.body);
 
-      return res.status(200).json({ token });
+      return res.status(200).json( token );
     } catch (error) {
       const { status, message } = error as ThrowError;
       return res.status(status).json({ message });
@@ -33,7 +33,7 @@ export default class Controller {
     try {
       const balance = await this.service.GetBalance(req.body.user.data.username);
             
-      return res.status(200).json({balance: balance.accounts.balance});
+      return res.status(200).json({username: balance.username, balance: balance.accounts.balance});
     } catch (error) {
       const { status, message } = error as ThrowError;
       return res.status(status).json({ message });

@@ -17,11 +17,12 @@ const Register: React.FC = () => {
 
       const token = await requestLogin(stateUsername, statePassword)
       localStorage.setItem('token', JSON.stringify(token) )
+			localStorage.setItem('user', JSON.stringify({username: 'Fred', balance: 100}) )
       navigate('/home')
 	}
 
 	return (
-		<div className='container'>
+		<div className='container bg-light'>
       <h1>Register</h1>
 			<form className='w-50'>
 				<div className="mb-3">

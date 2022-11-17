@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { requestLogin } from '../../utils/FetchAPI';
+import { requestBalance, requestLogin } from '../../utils/FetchAPI';
 import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
@@ -15,12 +15,14 @@ const Login: React.FC = () => {
 		event.preventDefault();
 		
 		const token = await requestLogin(stateUsername, statePassword)
-		localStorage.setItem('token', JSON.stringify(token) )
+		const resultUser = await requestBalance(token);
+		localStorage.setItem('token', token )
+		localStorage.setItem('user', JSON.stringify(resultUser) )
 		navigate('/home')
 	}
 
 	return (
-		<div className='container'>
+		<div className='container bg-light'>
       <h1>Login</h1>
 			<form className='w-50'>
 				<div className="mb-3">

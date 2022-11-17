@@ -1,0 +1,39 @@
+.home-page .my-navbar {
+  color: white !important;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.home-page .my-navbar i {
+  font-size: 25px;
+
+}
+
+.home-page .my-navbar img {
+  width: 75px;
+  margin-left: 40px;
+}
+
+.home-page .my-navbar .my-navbar-seeds {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.home-page .my-navbar .my-navbar-seeds div h4 {
+  margin: 0px;
+}
+
+.home-page .my-navbar .my-navbar-seeds div {
+  margin-right: 40px;
+}
+
+.home-page .my-navbar .my-navbar-seeds .nav-character {
+  display: flex;
+  align-items: center;
+}
+
+.home-page .my-navbar .my-navbar-seeds .nav-character i {
+  margin-right: 10px;
+}
