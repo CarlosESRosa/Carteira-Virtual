@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { requestBalance, requestLogin } from '../../utils/FetchAPI';
+import { requestBalance, requestGetTransactions, requestLogin } from '../../utils/FetchAPI';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
 
 const Login: React.FC = () => {
 	const [stateUsername, setStateUsername] = useState('');
@@ -13,12 +16,31 @@ const Login: React.FC = () => {
 
 	async function handleSubmit (event: any) {
 		event.preventDefault();
+		try {
+			const token = await requestLogin(stateUsername, statePassword)
+			const resultUser = await requestBalance(token);
+			const userTransactions = await requestGetTransactions(token)
 		
-		const token = await requestLogin(stateUsername, statePassword)
-		const resultUser = await requestBalance(token);
-		localStorage.setItem('token', token )
-		localStorage.setItem('user', JSON.stringify(resultUser) )
-		navigate('/home')
+			const result = {
+				username: resultUser.username,
+				balance: resultUser.balance,
+				transactions: userTransactions
+			}
+			
+			localStorage.setItem('token', token )
+			localStorage.setItem('user', JSON.stringify(result) )
+			navigate('/home')
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				console.log('error message: ', error.message);
+				// 👇️ error: AxiosError<any, any>
+				alert(error.message)
+				return error.message;
+			} else {
+				console.log('unexpected error: ', error);
+				return 'An unexpected error occurred';
+			}
+		}
 	}
 
 	return (
