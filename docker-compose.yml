@@ -1,0 +1,52 @@
+version: '3.1'
+
+services:
+  frontend:
+    container_name: app_frontend
+    working_dir: /app-frontend
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - backend
+  
+  backend:
+    container_name: app_backend
+    working_dir: /app-backend
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      JWT_SECRET: jwt_secret
+      APP_PORT: 3001
+      DB_USER: postgres
+      DB_PASS: 1234
+      DB_HOST: localhost
+      DB_PORT: 5432
+    command: npm run db:reset | npm run dev
+    depends_on: 
+      - db
+
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: ng_cash
+ 
+
+  
+
+
+  
+
+
+  

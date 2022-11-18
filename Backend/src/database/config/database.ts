@@ -5,7 +5,7 @@ const config: Options = {
   username: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASS || '1234',
   database: 'ng_cash',
-  host: 'localhost',
+  host: '172.18.0.2',
   port: Number(process.env.DB_PORT) || 5432,
   dialect: 'postgres',
   logging: false,
