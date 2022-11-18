@@ -2,10 +2,12 @@ import React from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Register from './pages/register';
+import Register from './pages/Register';
 
 import './App.css';
 import './pages/Home/Home.css';
+import './pages/Login/Login.css';
+import './pages/Register/Register.css';
 
 
 function App() {

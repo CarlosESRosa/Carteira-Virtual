@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
   background-color: black;
   display: flex;
   justify-content: center;
@@ -6,32 +6,31 @@
   min-height: 100vh;
 }
 
-.login-page .login-container {
+.register-page .register-container {
   background-color: lightgray;
   width: 400px;
   border-radius: 3%;
   padding: 20px;
 }
 
-.login-page .login-container h1 {
+.register-page .register-container h1 {
   color: black;
   text-align: center;
 
 }
 
-.login-page .login-container form {
+.register-page .register-container form {
   color: black;
 }
 
-.login-page .login-container form button {
+.register-page .register-container form button {
   color: white;
   background-color: black;
   padding: 10px;
 }
 
-.login-page .login-container form .login-buttons {
+.register-page .register-container form .register-buttons {
   text-align: center;
-  gap: 20px;
   display: flex;
   align-items: center;
   justify-content: center;

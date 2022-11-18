@@ -3,8 +3,6 @@ import { requestBalance, requestGetTransactions, requestLogin } from '../../util
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
-
 const Login: React.FC = () => {
 	const [stateUsername, setStateUsername] = useState('');
   const [statePassword, setStatePassword] = useState('');
@@ -44,43 +42,47 @@ const Login: React.FC = () => {
 	}
 
 	return (
-		<div className='container bg-light'>
-      <h1>Login</h1>
-			<form className='w-50'>
-				<div className="mb-3">
-					<label htmlFor="username" className="form-label">Username</label>
-					<input 
-						type="text"
-						value={ stateUsername }
-						onChange={ (event) => handleChange(event, setStateUsername)}
-						className="form-control"
-						id="username"
-					/>
-				</div>
-				<div className="mb-3">
-					<label htmlFor="password" className="form-label">Password</label>
-					<input 
-						type="password"
-						value={ statePassword }
-						onChange={ (event) => handleChange(event, setStatePassword)}
-						className="form-control"
-						id="password"
-					/>
-				</div>
-				<button 
-					type='submit'
-					className="btn btn-dark"
-					onClick={ handleSubmit }
-				>
-					Submit
-				</button>
-				<button 
-					onClick={ () => navigate('/register') }
-					className="btn btn-dark"
-				>
-					Register
-				</button>
-			</form>
+		<div className='login-page'>
+			<div className='login-container'>
+				<h1>LOGIN</h1>
+				<form>
+					<div className="mb-3">
+						<label htmlFor="username" className="form-label">Username</label>
+						<input 
+							type="text"
+							value={ stateUsername }
+							onChange={ (event) => handleChange(event, setStateUsername)}
+							className="form-control"
+							id="username"
+						/>
+					</div>
+					<div className="mb-4">
+						<label htmlFor="password" className="form-label">Password</label>
+						<input 
+							type="password"
+							value={ statePassword }
+							onChange={ (event) => handleChange(event, setStatePassword)}
+							className="form-control"
+							id="password"
+						/>
+					</div>
+					<div className='login-buttons'>
+						<button 
+							type='submit'
+							className="btn btn-dark"
+							onClick={ handleSubmit }
+						>
+							Login
+						</button>
+						<button 
+							onClick={ () => navigate('/register') }
+							className="btn btn-dark"
+						>
+							Register
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	)
 }

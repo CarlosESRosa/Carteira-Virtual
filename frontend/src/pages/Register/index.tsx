@@ -43,37 +43,42 @@ const Register: React.FC = () => {
 	}
 
 	return (
-		<div className='container bg-light'>
-      <h1>Register</h1>
-			<form className='w-50'>
-				<div className="mb-3">
-					<label htmlFor="username" className="form-label">Username</label>
-					<input 
-						type="text"
-						value={ stateUsername }
-						onChange={ (event) => handleChange(event, setStateUsername)}
-						className="form-control"
-						id="username"
-					/>
-				</div>
-				<div className="mb-3">
-					<label htmlFor="password" className="form-label">Password</label>
-					<input 
-						type="password"
-						value={ statePassword }
-						onChange={ (event) => handleChange(event, setStatePassword)}
-						className="form-control"
-						id="password"
-					/>
-				</div>
-				<button 
-					type='submit'
-					className="btn btn-dark"
-					onClick={ handleCreate }
-				>
-					Create
-				</button>
-			</form>
+		<div className='register-page'>
+			<div className='register-container'>
+				<h1>REGISTER</h1>
+				<form>
+					<div className="mb-3">
+						<label htmlFor="username" className="form-label">Username</label>
+						<input 
+							type="text"
+							value={ stateUsername }
+							onChange={ (event) => handleChange(event, setStateUsername)}
+							className="form-control"
+							id="username"
+						/>
+					</div>
+					<div className="mb-4">
+						<label htmlFor="password" className="form-label">Password</label>
+						<input 
+							type="password"
+							value={ statePassword }
+							onChange={ (event) => handleChange(event, setStatePassword)}
+							className="form-control"
+							id="password"
+						/>
+					</div>
+					<div className='register-buttons'>
+						<button 
+							type='submit'
+							className="btn btn-dark"
+							onClick={ handleCreate }
+						>
+							Create
+						</button>
+					</div>
+				</form>
+			</div>
+
 		</div>
 	)
 }
