@@ -96,7 +96,7 @@ export default class Service implements IService {
 
 	createTransaction = async (debited: string, data: {value: number, username: string}): Promise<string> => {
 		// payload validations
-		if(!data.value) throw this.invalidFields;
+		if(!data.value || data.value < 0) throw this.invalidFields;
 		if(!data.username) throw this.invalidFields;
 
 		const debitedUser = await this.GetUserByUsername(debited);
