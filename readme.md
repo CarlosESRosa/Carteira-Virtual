@@ -28,7 +28,7 @@
  - Use o endpoint `GET /` para testar a api, em caso de sucesso retorna:
 ```json
 {
-	"ok": "Backend working"
+  "ok": "Backend working"
 }
 ```
 
@@ -36,17 +36,17 @@
  - Você deve preencher o body com um `username` e um `password` validos, exemplo:
  ```json
 {
-	"username": "Carlos",
-	"password": "Password1",
+  "username": "Carlos",
+  "password": "Password1",
 }
 ```
  - Em caso de sucesso, retorna as informações do usuário criado:
 ```json
 {
-	"id": 4,
-	"username": "<Carlos>",
-	"password": "$2a$10$ILdKzLspVXavt9GCrtqf8urcITmpFgPjdgJX.cM9zKKLk.JTX/Rk.",
-	"accountId": 4
+  "id": 4,
+  "username": "<Carlos>",
+  "password": "$2a$10$ILdKzLspVXavt9GCrtqf8urcITmpFgPjdgJX.cM9zKKLk.JTX/Rk.",
+  "accountId": 4
 }
 ```
 
@@ -54,13 +54,13 @@
  - Você deve preencher o body com um `username` e um `password` validos, exemplo:
  ```json
 {
-	"username": "Carlos",
-	"password": "Password1",
+  "username": "Carlos",
+  "password": "Password1",
 }
 ```
  - Em caso de sucesso, retorna um token que tem duração de 24h e será utilizado em requisições futuras:
 ```json
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiQ2FybG9zIn0sImlhdCI6MTY2ODgxMjg4NywiZXhwIjoxNjY4ODk5Mjg3fQ.MQsfKi91O-1I1mwh9GZMXENGkCTmcvck9tF99xVD8l0"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiQ2FybG9zIn0sImlhdCI6MTY2ODgxMjg4NywiZXhwIjoxNjY4ODk5Mjg3fQ.MQsfKi91O-1I1mwh9GZMXENGkCTmcvck9tF99xVD8l0"
 ```
 
 **`GET /balance`**
@@ -68,8 +68,8 @@
  - Em caso de sucesso, retorna o nome do usuário e o balance da conta:
 ```json
 {
-	"username": "Carlos",
-	"balance": 100000000,
+  "username": "Carlos",
+  "balance": 100000000,
 }
 ```
 
@@ -78,13 +78,13 @@
  - Você deve preencher o body com um `value` e um `username` validos, exemplo:
  ```json
 {
-	"value": 1000,
-	"username": "Rosa"
+  "value": 1000,
+  "username": "Rosa"
 }
 ```
  - Em caso de sucesso, retorna as informações da transação realizada:
 ```json
-	"successful Transaction of <valor> from <quem enviou> to <quem recebeu>"
+  "successful Transaction of <valor> from <quem enviou> to <quem recebeu>"
 ```
 
 **`GET /transactions`**
@@ -92,20 +92,20 @@
  - Em caso de sucesso, retorna informações de todas as transações que o usuário participou (enviando ou recebendo):
 ```json
 [
-	{
-		"id": 1,
-		"debitedAccountId": 3,
-		"creditedAccountId": 2,
-		"value": 1000000,
-		"createdAt": "2022-11-17T15:48:08.202Z"
-	},
-	{
-		"id": 2,
-		"debitedAccountId": 3,
-		"creditedAccountId": 1,
-		"value": 1000000,
-		"createdAt": "2022-11-17T15:48:18.184Z"
-	}
+  {
+     "id": 1,
+     "debitedAccountId": 3,
+     "creditedAccountId": 2,
+     "value": 1000000,
+     "createdAt": "2022-11-17T15:48:08.202Z"
+  },
+  {
+     "id": 2,
+     "debitedAccountId": 3,
+     "creditedAccountId": 1,
+     "value": 1000000,
+     "createdAt": "2022-11-17T15:48:18.184Z"
+  }
 ]
 ```
 
