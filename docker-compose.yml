@@ -30,6 +30,8 @@ services:
     command: npm run db:reset | npm run dev
     depends_on: 
       - db
+    links:
+      - db
 
   db:
     image: postgres
