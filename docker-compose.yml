@@ -27,11 +27,12 @@ services:
       DB_PASS: 1234
       DB_HOST: localhost
       DB_PORT: 5432
-    command: npm run db:reset | npm run dev
+    command: npm run db:reset
     depends_on: 
       - db
     links:
       - db:api.localhost
+    restart: 'always'
 
   db:
     image: postgres
