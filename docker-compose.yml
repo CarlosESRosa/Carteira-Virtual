@@ -31,9 +31,7 @@ services:
     depends_on: 
       - db
     links:
-      - db
-    extra_hosts:
-      - "host.docker.internal:172.17.0.1"
+      - db:api.localhost
 
   db:
     image: postgres
