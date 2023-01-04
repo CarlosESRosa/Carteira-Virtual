@@ -1,0 +1,17 @@
+.header {
+  background-color: black;
+  max-height: 10vh;
+}
+
+.header .navbar-brand img {
+  height: 9vh;
+}
+
+.header ul li a {
+  color: white !important;
+}
+
+.header .navbar button {
+  background-color: white;
+  color: black;
+}
