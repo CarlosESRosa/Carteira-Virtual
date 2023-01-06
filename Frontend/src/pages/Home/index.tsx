@@ -211,10 +211,10 @@ const Home: React.FC = () => {
               <thead>
                 <tr>
                   <th scope="col">id</th>
-                  <th scope="col">debitedAccountId</th>
-                  <th scope="col">creditedAccountId</th>
+                  <th scope="col">debited</th>
+                  <th scope="col">credited</th>
                   <th scope="col">value</th>
-                  <th scope="col">createdAt</th>
+                  <th scope="col">date</th>
                 </tr>
               </thead>
               {copyUserData.transactions.map((element: any) => (
