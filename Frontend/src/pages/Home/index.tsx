@@ -89,7 +89,7 @@ const Home: React.FC = () => {
       if (axios.isAxiosError(error)) {
         console.log("error message: ", error.message);
         // 👇️ error: AxiosError<any, any>
-        alert(error.message);
+        alert(`${error.response?.data.message} `);
         return error.message;
       } else {
         console.log("unexpected error: ", error);
