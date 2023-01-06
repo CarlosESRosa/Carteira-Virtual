@@ -166,3 +166,14 @@
     margin-top: 50px;
   }
 }
+
+@media only screen and (max-width: 576px) {
+  .home-page .section1-container .section1-row .col-right {
+    display: none;
+  }
+
+  .home-page .section1-container .section1-row .col-left {
+    width: 100%;
+    margin-top: 10vh;
+  }
+}
