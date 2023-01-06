@@ -137,15 +137,15 @@ const Home: React.FC = () => {
     <div className="home-page">
       <Header username={userData.username} logout={logout} />
       <div className="section1-container">
-        <div className="row section1-row">
-          <div className="col col-left">
+        <div className="section1-row">
+          <div className="col-left">
             <div>
               <h1>{`Saldo: R$ ${userData.balance}`}</h1>
             </div>
             <div className="section1-transfer">
               <h3>Transferir</h3>
               <div>
-                <div className="section1-transfer-row row">
+                <div className="section1-transfer-row">
                   <input
                     className="form-control"
                     type="number"
@@ -176,7 +176,7 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="col">
+          <div className="col-right">
             <img
               src="https://ng.cash/_nuxt/img/home-ngcash-app.49e176e.png"
               alt="NG.CASH App"
@@ -218,7 +218,7 @@ const Home: React.FC = () => {
                 </tr>
               </thead>
               {copyUserData.transactions.map((element: any) => (
-                <tbody>
+                <tbody key={element.id}>
                   <tr>
                     <th scope="row">{element.id}</th>
                     <td>{element.debitedAccountId}</td>

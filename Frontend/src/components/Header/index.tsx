@@ -12,7 +12,7 @@ export default function Header(props: { username: string; logout: any }) {
             ></img>
           </a>
           <button
-            className="navbar-toggler me-2"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"

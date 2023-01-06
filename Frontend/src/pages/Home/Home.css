@@ -1,16 +1,25 @@
 /* SECTION 1 */
 .home-page .section1-container {
   background: url("https://ng.cash/_nuxt/img/banner-landing-page.0bd7f55.jpg");
-  margin-top: 10vh;
-  height: 90vh;
+  height: 88vh;
   color: white;
+}
+
+.home-page .section1-container .section1-row {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.home-page .section1-container img {
-  width: 70vh;
+.home-page .section1-container .section1-row .col-right {
+  width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-page .section1-container .section1-row .col-right img {
+  width: 600px;
 }
 
 .home-page .section1-container .section1-row .col-left {
@@ -18,6 +27,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  width: 500px;
 }
 
 .home-page .section1-container .section1-row .col-left h1 {
@@ -54,7 +64,7 @@
   .section1-transfer
   .section1-transfer-row
   input {
-  width: 30% !important;
+  width: 120px !important;
 }
 
 .home-page
