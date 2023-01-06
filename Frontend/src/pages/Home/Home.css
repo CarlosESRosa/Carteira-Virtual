@@ -156,3 +156,13 @@
     width: 500px;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .home-page .section1-container .section1-row .col-right img {
+    width: 420px;
+  }
+
+  .home-page .section1-container .section1-row .col-right {
+    margin-top: 50px;
+  }
+}
