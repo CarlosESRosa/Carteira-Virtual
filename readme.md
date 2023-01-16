@@ -110,3 +110,14 @@
 ```
 
 </details>
+
+<details>
+<summary><strong>Testes</strong></summary><br />
+
+**Frontend:**
+  - Para rodar os testes do Frontend entre na pasta `./Frontend`, abra um terminal e rode o comando `npm run test`.
+  - Os testes foram criados com a React Testing Library e Jest
+
+**Backend (EM construção):**
+  - Para rodar os testes do Backend entre na pasta `./Backend`, abra um terminal e rode o comando `npm run test`.
+</details>
