@@ -1,6 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import Login from "../pages/Login";
-import { BrowserRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
 import { renderWithRouter } from "./renderWithRouter";

@@ -1,6 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import Login from "../pages/Login";
-import { BrowserRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
 import { renderWithRouter } from "./renderWithRouter";
@@ -50,7 +48,6 @@ describe("Home page tests", () => {
     await userEvent.click(enviarButton);
 
     const elementTable = await screen.findAllByRole("row");
-    console.log("AQUI-----------------", elementTable);
 
     expect(elementTable[0]).toBeInTheDocument();
   });

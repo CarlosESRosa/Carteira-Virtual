@@ -1,30 +1,28 @@
-import { render, screen } from "@testing-library/react";
-import Login from "../pages/Login";
-import { BrowserRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
 import { renderWithRouter } from "./renderWithRouter";
 
 describe("Login page tests", () => {
   it("Should have Login Form Title", () => {
-    render(<Login />, { wrapper: BrowserRouter });
-    const mainTitle = screen.getByRole("heading", { level: 1 });
+    renderWithRouter(<App />);
+    const mainTitle = screen.getByRole("heading", { level: 1, name: /Login/i });
     expect(mainTitle).toBeInTheDocument();
   });
 
   it("Should have Login Form username input", () => {
-    render(<Login />, { wrapper: BrowserRouter });
+    renderWithRouter(<App />);
     const usernameLabel = screen.getByLabelText(/username/i);
     expect(usernameLabel).toBeInTheDocument();
   });
 
   it("Should have Login Form Password input", () => {
-    render(<Login />, { wrapper: BrowserRouter });
+    renderWithRouter(<App />);
     const usernameLabel = screen.getByLabelText(/password/i);
     expect(usernameLabel).toBeInTheDocument();
   });
 
-  it("Should submit login", async () => {
+  it("Should submit success login", async () => {
     renderWithRouter(<App />);
 
     const usernameInput = screen.getByText(/Username/i);
@@ -40,7 +38,7 @@ describe("Login page tests", () => {
     expect(user).toBeInTheDocument();
   });
 
-  it("Should submit fail with invalid user", async () => {
+  it("Should login fail with invalid user", async () => {
     renderWithRouter(<App />);
 
     const usernameInput = screen.getByText(/Username/i);
