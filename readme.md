@@ -1,6 +1,30 @@
 A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira virtual e foi inspirada na NG.CASH. Nela é possível fazer Login caso já tenha um usuário ou se registrar, é possível efetuar transferências entre usuários válidos, também é possível ver todas as transferências que o usuário logado participou. 
 
 <details>
+<summary><strong>Habilidades envolvidas</strong></summary><br />
+
+**Frontend:**
+  - React 
+  - Typescript
+  - HTML CSS
+  - Bootstrap
+  - Responsividade
+  - React Testing Library
+  - Jest
+
+
+**Backend:**
+  - Node
+  - Typescript
+  - Express
+  - Sequelize
+  - Docker
+  - Jsonwebtoken
+  - Bcrypt
+
+</details>
+
+<details>
 <summary><strong>Como rodar</strong></summary><br />
 
 **Docker:**
