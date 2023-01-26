@@ -1,4 +1,4 @@
-A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira virtual e foi inspirada na NG.CASH. Nela é possível fazer Login caso já tenha um usuário ou se registrar, é possível efetuar transferências entre usuários válidos, também é possível ver todas as transferências que o usuário logado participou. 
+A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira virtual e teve o design inspirado na NG.CASH. Nela é possível fazer Login caso já tenha um usuário ou se registrar, é possível efetuar transferências entre usuários válidos, também é possível ver todas as transferências que o usuário logado participou. 
 
 <details>
 <summary><strong>Habilidades envolvidas</strong></summary><br />
