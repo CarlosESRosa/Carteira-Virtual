@@ -1,7 +1,7 @@
-A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira virtual e teve o design inspirado na NG.CASH. Nela é possível fazer Login caso já tenha um usuário ou se registrar, é possível efetuar transferências entre usuários válidos, também é possível ver todas as transferências que o usuário logado participou. 
+Carteira-Virtual is a personal Full Stack application that simulates a virtual wallet and was designed inspired by NG.CASH. It is possible to Login if you already have a user or register, it is possible to make transfers between valid users, it is also possible to see all transfers that the logged in user participated in.
 
 <details>
-<summary><strong>Habilidades envolvidas</strong></summary><br />
+<summary><strong>Technologies</strong></summary><br />
 
 **Frontend:**
   - React 
@@ -25,25 +25,25 @@ A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira
 </details>
 
 <details>
-<summary><strong>Como rodar</strong></summary><br />
+<summary><strong>How to run</strong></summary><br />
 
 **Docker:**
-  - Rode o comando `docker-compose up` para criar seu docker-compose.
+  - Run the `docker-compose up` command to create your docker-compose.
 
-**Banco de dados:**
-  - Será um container docker Postgres já configurado no docker-compose através de um serviço definido como `db`.
-  - Tem o papel de fornecer dados para o serviço de _backend_.
-  - Roda na pota `5432`.
+**Database:**
+  - It will be a Postgres docker container already configured in docker-compose through a service defined as `db`.
+  - Has the role of providing data to the _backend_ service.
+  - Run on port `5432`.
   
 **Back-end:**
- - Será um container docker no docker-compose através de um serviço definido como `backend`.
- - Ao iniciar o Docker-compose o backend irá estruturar e popular o banco de dados com informações iniciais definidas pelo sequelize.
- - Roda na porta `3001`.
+ - It will be a docker container in docker-compose through a service defined as `backend`.
+ - When starting Docker-compose the backend will structure and populate the database with initial information defined by sequelize.
+ - Run on port `3001`.
 
 **Front-end:**
- - Será um container docker no docker-compose através de um serviço definido como `frontend`.
- - Ao iniciar o Docker-compose o frontend gera um terminal que já inicia sua aplicação frontend, você pode acessa-la na rota `http://localhost:3000/`
- - Roda na porta `3000`.
+ - It will be a docker container in docker-compose through a service defined as `frontend`.
+ - When starting Docker-compose, the frontend generates a terminal that starts your frontend application, you can access it via the route `http://localhost:3000/`
+ - Run on port `3000`.
 
 </details>
 
@@ -51,7 +51,7 @@ A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira
 <summary><strong>API</strong></summary><br />
 
 **`GET /`**
- - Use o endpoint `GET /` para testar a api, em caso de sucesso retorna:
+ - Use the `GET /` endpoint to test the api, if successful it returns:
 ```json
 {
   "ok": "Backend working"
@@ -59,14 +59,14 @@ A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira
 ```
 
 **`POST /register`**
- - Você deve preencher o body com um `username` e um `password` validos, exemplo:
+ - You must fill in the body with a valid `username` and `password`, example:
  ```json
 {
   "username": "Carlos",
   "password": "Password1",
 }
 ```
- - Em caso de sucesso, retorna as informações do usuário criado:
+ - If successful, returns the information of the created user:
 ```json
 {
   "id": 4,
@@ -77,21 +77,21 @@ A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira
 ```
 
 **`POST /login`**
- - Você deve preencher o body com um `username` e um `password` validos, exemplo:
+ - You must fill in the body with a valid `username` and `password`, example:
  ```json
 {
   "username": "Carlos",
   "password": "Password1",
 }
 ```
- - Em caso de sucesso, retorna um token que tem duração de 24h e será utilizado em requisições futuras:
+ - If successful, it returns a token that lasts 24 hours and will be used in future requests:
 ```json
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiQ2FybG9zIn0sImlhdCI6MTY2ODgxMjg4NywiZXhwIjoxNjY4ODk5Mjg3fQ.MQsfKi91O-1I1mwh9GZMXENGkCTmcvck9tF99xVD8l0"
 ```
 
 **`GET /balance`**
- - Você deve preencher o Header `Authorization` com o token recebido ao efetuar Login.
- - Em caso de sucesso, retorna o nome do usuário e o balance da conta:
+ - You must fill in the `Authorization` Header with the token received when logging in.
+ - If successful, returns the user name and account balance:
 ```json
 {
   "username": "Carlos",
@@ -100,22 +100,22 @@ A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira
 ```
 
 **`POST /transaction`**
- - Você deve preencher o Header `Authorization` com o token recebido ao efetuar Login.
- - Você deve preencher o body com um `value` e um `username` validos, exemplo:
+ - You must fill in the `Authorization` Header with the token received when logging in.
+ - You must fill in the body with a valid `value` and `username`, example:
  ```json
 {
   "value": 1000,
   "username": "Rosa"
 }
 ```
- - Em caso de sucesso, retorna as informações da transação realizada:
+ - If successful, it returns the information about the transaction carried out:
 ```json
-  "successful Transaction of <valor> from <quem enviou> to <quem recebeu>"
+  "successful Transaction of <valor> from <who sent> to <who received>"
 ```
 
 **`GET /transactions`**
- - Você deve preencher o Header `Authorization` com o token recebido ao efetuar Login.
- - Em caso de sucesso, retorna informações de todas as transações que o usuário participou (enviando ou recebendo):
+ - You must fill in the `Authorization` Header with the token received when logging in.
+ - If successful, returns information on all transactions that the user participated in (sending or receiving):
 ```json
 [
   {
@@ -138,12 +138,12 @@ A Carteira-Virtual é uma aplicação Full Stack pessoal que simula uma carteira
 </details>
 
 <details>
-<summary><strong>Testes</strong></summary><br />
+<summary><strong>Tests</strong></summary><br />
 
 **Frontend:**
-  - Para rodar os testes do Frontend entre na pasta `./Frontend`, abra um terminal e rode o comando `npm run test`.
-  - Os testes foram criados com a React Testing Library e Jest
+  - To run the Frontend tests, go to the `./Frontend` folder, open a terminal and run the `npm run test` command.
+  - The tests were created with the React Testing Library and Jest
 
 **Backend (EM construção):**
-  - Para rodar os testes do Backend entre na pasta `./Backend`, abra um terminal e rode o comando `npm run test`.
+  - To run the Backend tests, go to the `./Backend` folder, open a terminal and run the `npm run test` command.
 </details>
