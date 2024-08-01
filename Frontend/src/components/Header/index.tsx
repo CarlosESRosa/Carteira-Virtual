@@ -7,7 +7,7 @@ export default function Header(props: { username: string; logout: any }) {
         <div className="container-fluid">
           <a className="navbar-brand ms-2" href="#">
             <img
-              src="https://ng.cash/_nuxt/img/logo-ngcash-branco.88c5860.svg"
+              src="https://cdn.prod.website-files.com/6385128589ca38c0cb82b578/63971ba9c76cec80821a9332_logo.svg"
               alt="NG.cash logo"
             ></img>
           </a>

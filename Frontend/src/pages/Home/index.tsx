@@ -178,7 +178,7 @@ const Home: React.FC = () => {
           </div>
           <div className="col-right">
             <img
-              src="https://ng.cash/_nuxt/img/home-ngcash-app.49e176e.png"
+              src="https://cdn.prod.website-files.com/63f78321305db13d87a55380/63f792fc0150fa9f7fa6fdfb_cartaovirtual-saldo%20unificado.svg"
               alt="NG.CASH App"
             />
           </div>
